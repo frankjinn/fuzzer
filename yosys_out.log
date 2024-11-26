@@ -1,0 +1,271 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.37+29 (git sha1 3c3788ee2, clang 10.0.0-4ubuntu1 -fPIC -Os)
+
+1. Executing Verilog-2005 frontend: /scratch/simufuzz-workdir/tmp/obj_dir_example_cellstats_700_SimulatorType.SIM_ICARUS_1_83/template_module.sv
+Parsing SystemVerilog input from `/scratch/simufuzz-workdir/tmp/obj_dir_example_cellstats_700_SimulatorType.SIM_ICARUS_1_83/template_module.sv' to AST representation.
+Storing AST representation for module `$abstract\top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+3. Executing AST frontend in derive mode using pre-parsed AST for module `\top'.
+Generating RTLIL representation for module `\top'.
+
+3.1. Analyzing design hierarchy..
+Top module:  \top
+
+3.2. Analyzing design hierarchy..
+Top module:  \top
+Removing unused module `$abstract\top'.
+Removed 1 unused modules.
+Simufuzz: Starting to create logic for module `\top`.
+Simufuzz: clkin_ports_names.size(): 3
+Simufuzz: Adding subnet 0. Size: 1 / 1
+Simufuzz: Created logic for module `\top`.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module top.
+<suppressed ~1 debug messages>
+
+5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \top..
+Removed 332 unused cells and 1849 unused wires.
+<suppressed ~666 debug messages>
+
+6. Printing statistics.
+
+=== top ===
+
+   Number of wires:                373
+   Number of wire bits:           1903
+   Number of public wires:         373
+   Number of public wire bits:    1903
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                367
+     $_AND_                         18
+     $_AOI3_                         9
+     $_MUX_                         13
+     $_NMUX_                        29
+     $_NOT_                          7
+     $_OAI4_                        26
+     $adlatch_10                     1
+     $adlatch_11                     4
+     $adlatch_12                     1
+     $adlatch_3                      3
+     $adlatch_4                      1
+     $adlatch_5                      2
+     $adlatch_6                      2
+     $adlatch_7                      1
+     $adlatch_8                      2
+     $div_12                         1
+     $div_14                         1
+     $div_23                         1
+     $div_3                          1
+     $div_5                          1
+     $div_8                          3
+     $div_9                          2
+     $eq_10                          1
+     $eq_11                          2
+     $eq_12                          1
+     $eq_13                          1
+     $eq_14                          1
+     $eq_16                          3
+     $eq_19                          1
+     $eq_22                          1
+     $eq_3                           2
+     $eq_4                           2
+     $eq_5                           1
+     $eq_8                           2
+     $eqx_10                         2
+     $eqx_11                         2
+     $eqx_16                         1
+     $eqx_18                         1
+     $eqx_25                         1
+     $eqx_3                          1
+     $eqx_4                          1
+     $eqx_5                          1
+     $eqx_6                          2
+     $eqx_7                          1
+     $gt_10                          4
+     $gt_12                          1
+     $gt_14                          2
+     $gt_15                          2
+     $gt_16                          1
+     $gt_17                          1
+     $gt_18                          1
+     $gt_19                          2
+     $gt_3                           4
+     $gt_33                          1
+     $gt_36                          1
+     $gt_4                           1
+     $gt_5                           1
+     $gt_6                           1
+     $gt_7                           2
+     $gt_8                           3
+     $gt_9                           1
+     $le_10                          2
+     $le_12                          1
+     $le_13                          1
+     $le_14                          2
+     $le_15                          2
+     $le_16                          1
+     $le_21                          1
+     $le_3                           3
+     $le_4                           1
+     $le_5                           3
+     $le_6                           1
+     $le_7                           1
+     $le_8                           1
+     $lt_12                          1
+     $lt_15                          1
+     $lt_4                           1
+     $lt_6                           1
+     $lt_7                           1
+     $lt_8                           1
+     $mod_10                         1
+     $mod_12                         1
+     $mod_3                          1
+     $mod_4                          1
+     $mod_6                          1
+     $mod_8                          1
+     $not_10                         2
+     $not_13                         1
+     $not_19                         1
+     $not_24                         1
+     $not_3                          2
+     $not_4                          1
+     $not_5                          2
+     $not_7                          1
+     $not_9                          1
+     $or_16                          1
+     $or_18                          1
+     $or_20                          1
+     $or_24                          1
+     $or_3                           1
+     $or_5                           3
+     $or_6                           1
+     $or_7                           1
+     $or_8                           1
+     $or_9                           1
+     $reduce_or_10                   2
+     $reduce_or_11                   1
+     $reduce_or_15                   1
+     $reduce_or_22                   1
+     $reduce_or_3                    4
+     $reduce_or_4                    3
+     $reduce_or_5                    3
+     $reduce_or_6                    2
+     $reduce_or_7                    1
+     $reduce_or_9                    3
+     $reduce_xor_10                  1
+     $reduce_xor_12                  1
+     $reduce_xor_13                  1
+     $reduce_xor_3                   2
+     $reduce_xor_5                   2
+     $reduce_xor_6                   1
+     $reduce_xor_8                   1
+     $shift_10                       1
+     $shift_13                       1
+     $shift_15                       1
+     $shift_17                       1
+     $shift_19                       1
+     $shift_3                        3
+     $shift_30                       1
+     $shift_4                        2
+     $shift_5                        1
+     $shift_7                        2
+     $shift_8                        1
+     $shift_9                        5
+     $shl_10                         1
+     $shl_11                         1
+     $shl_17                         1
+     $shl_26                         1
+     $shl_3                          3
+     $shl_4                          1
+     $shl_54                         1
+     $shl_6                          2
+     $shl_7                          3
+     $sshr_10                        2
+     $sshr_14                        1
+     $sshr_4                         1
+     $sshr_8                         2
+     $sub_10                         1
+     $sub_12                         1
+     $sub_3                          1
+     $sub_4                          2
+     $sub_5                          1
+     $sub_6                          2
+     $sub_7                          2
+     $sub_9                          2
+     $xnor_10                        3
+     $xnor_12                        2
+     $xnor_13                        1
+     $xnor_14                        2
+     $xnor_15                        1
+     $xnor_16                        2
+     $xnor_20                        1
+     $xnor_23                        1
+     $xnor_3                         4
+     $xnor_37                        1
+     $xnor_38                        1
+     $xnor_4                         4
+     $xnor_5                         5
+     $xnor_6                         4
+     $xnor_7                         4
+     $xnor_8                         4
+
+End of script. Logfile hash: 02ae2d2d88, CPU: user 0.12s system 0.01s, MEM: 18.00 MB peak
+Yosys 0.37+29 (git sha1 3c3788ee2, clang 10.0.0-4ubuntu1 -fPIC -Os)
+Time spent: 32% 1x opt_clean (0 sec), 27% 1x simufuzz (0 sec), ...

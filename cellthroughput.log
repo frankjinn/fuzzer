@@ -1,0 +1,5 @@
+Average number of cells for TransFuzz: 402.16
+Average number of cells for Verismith: 495.2
+Average time (seconds) per cell for TransFuzz: 0.0037
+Average time (seconds) per cell for Verismith: 0.0062
+Speedup per cell: 1.70
