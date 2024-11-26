@@ -285,7 +285,7 @@ def __run_yosys_stats(work_dir: str, has_probes: bool, do_opt: bool, template_in
 def __build_executable(simulator_type: SimulatorType, work_dir: str, has_probes: bool, do_trace: bool, verilator_fno_flags: str = ''):
     # Second, build the executable
     if simulator_type == SimulatorType.SIM_VERILATOR:
-        cmd_str = f"verilator --cc {'--trace --trace-underscore' if do_trace else ''} --exe --Wno-MULTIDRIVEN --Wno-UNOPTFLAT --Wno-NOLATCH --Wno-WIDTHTRUNC --Wno-CMPCONST --Wno-WIDTHEXPAND --Wno-UNSIGNED {verilator_fno_flags} --build {os.path.join(os.getcwd(), VERILATOR_TB_FILENAME if not has_probes else VERILATOR_TB_FILENAME_PROBES)} {os.path.join(work_dir, 'top.sv')} -CFLAGS '-I{os.path.join(os.getcwd(), 'include')} -I{work_dir} -g' --Mdir {os.path.join(work_dir, 'obj_dir')} --build-jobs {RunParams.VERILATOR_COMPILATION_JOBS}"
+        cmd_str = f"verilator --coverage --cc {'--trace --trace-underscore' if do_trace else ''} --exe --Wno-MULTIDRIVEN --Wno-UNOPTFLAT --Wno-NOLATCH --Wno-WIDTHTRUNC --Wno-CMPCONST --Wno-WIDTHEXPAND --Wno-UNSIGNED {verilator_fno_flags} --build {os.path.join(os.getcwd(), VERILATOR_TB_FILENAME if not has_probes else VERILATOR_TB_FILENAME_PROBES)} {os.path.join(work_dir, 'top.sv')} -CFLAGS '-I{os.path.join(os.getcwd(), 'include')} -I{work_dir} -g' --Mdir {os.path.join(work_dir, 'obj_dir')} --build-jobs {RunParams.VERILATOR_COMPILATION_JOBS}"
 
     elif simulator_type == SimulatorType.SIM_ICARUS:
         os.makedirs(os.path.join(work_dir, 'icarus_obj_dir'), exist_ok=True)
@@ -324,6 +324,9 @@ def __build_executable(simulator_type: SimulatorType, work_dir: str, has_probes:
         subprocess.run(cmd_str, check=True, shell=True)
     else:
         subprocess.run(cmd_str, check=True, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    if simulator_type == SimulatorType.SIM_VERILATOR:
+        cmd_str = f"verilator_coverage --write-info {os.path.join(work_dir, 'coverage.info')} {os.path.join(work_dir, 'coverage.dat')}"
 
 # Returns a tuple of (elapsed_time, output_signature, stderr)
 def __run_executable(fuzzerstate, simulator_type: SimulatorType, timeout_seconds: int):
